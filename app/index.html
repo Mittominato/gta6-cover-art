@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Neon Coast Cover Studio — turn your photos and a caption into bold multi-panel cover art, exported as a PNG. Works fully offline.">
+<title>Neon Coast Cover Studio — make your own multi-panel cover art</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<noscript><p style="padding:16px">Neon Coast Cover Studio needs JavaScript to draw your cover.</p></noscript>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">NC</span>
+    <div>
+      <h1>Neon Coast Cover Studio</h1>
+      <p class="tagline">Turn your photos + a caption into bold multi-panel cover art. 100% offline — photos never leave your machine.</p>
+    </div>
+  </div>
+  <div class="export-row" role="group" aria-label="Export size">
+    <span class="export-label">Export PNG</span>
+    <button type="button" data-export="1080x1080">1080 × 1080</button>
+    <button type="button" data-export="1080x1350">1080 × 1350</button>
+    <button type="button" data-export="1920x1080" class="primary">1920 × 1080</button>
+  </div>
+</header>
+
+<main id="dropzone" class="layout">
+  <section class="preview-col">
+    <div class="preview-wrap">
+      <canvas id="preview" width="960" height="600" aria-label="Live cover preview"></canvas>
+    </div>
+    <p id="status" class="status" role="status">Add a photo to begin — or try a sample.</p>
+    <div class="panel-row" id="panels" aria-label="Select a panel"></div>
+    <div class="crop-row">
+      <label for="zoom">Zoom <span id="zoomVal">1.15x</span></label>
+      <input id="zoom" type="range" min="0" max="150" value="15" step="1">
+      <button type="button" id="fillAll">Fill all panels</button>
+      <button type="button" id="resetCrop">Reset crop</button>
+    </div>
+    <p class="hint">Drag inside the preview to pan the selected panel's photo. Click a tray photo, then a panel, to assign it.</p>
+  </section>
+
+  <aside class="controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <label class="file-btn" for="fileInput">Add photos from your machine</label>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <div class="sample-row">
+        <button type="button" data-sample="samples/boulevard.jpg" data-name="boulevard.jpg">Try sample: Boulevard</button>
+        <button type="button" data-sample="samples/pier.jpg" data-name="pier.jpg">Try sample: Pier</button>
+      </div>
+      <div id="tray" class="tray"></div>
+      <p class="hint">Or drag &amp; drop image files anywhere on this page.</p>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div id="layouts" class="chip-row"></div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Caption</h2>
+      <label class="field-label" for="title">Title</label>
+      <input id="title" type="text" value="NEON SHORE" maxlength="24">
+      <label class="field-label" for="subtitle">Subtitle</label>
+      <input id="subtitle" type="text" value="palms, chrome &amp; midnight drives" maxlength="60">
+      <label class="field-label" for="titleSize">Title size</label>
+      <input id="titleSize" type="range" min="60" max="140" value="100" step="1">
+    </section>
+
+    <section class="card">
+      <h2>4 · Grade &amp; finish</h2>
+      <div id="grades" class="chip-row"></div>
+      <label class="check"><input id="grain" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vignette" type="checkbox" checked> Vignette</label>
+    </section>
+
+    <section class="card howto">
+      <h2>How it works</h2>
+      <ol>
+        <li>Add one or more photos.</li>
+        <li>Pick a layout and a grade.</li>
+        <li>Edit the title and subtitle.</li>
+        <li>Click a panel, drag to pan, zoom to crop.</li>
+        <li>Export a PNG in your post size.</li>
+      </ol>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Neon Coast Cover Studio — original artwork made on your machine. Fonts: Anton &amp; Pacifico (SIL Open Font License, see app/fonts/OFL.txt). Sample photos are free to use.</p>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+<script type="module" src="src/shots.js"></script>
+</body>
+</html>
